@@ -1,2 +1,2 @@
-# remote-dev
+# dev
 My personal dev machine.
