@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e
+
+home=`dirname "$0"`/..
+home=`cd "$home" && env - "PATH=$PATH" pwd`
+
+"$home"/_start/bin/clean
+"$home"/sys/bin/clean
+"$home"/core/bin/clean

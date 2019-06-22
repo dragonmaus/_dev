@@ -1,0 +1,28 @@
+#!/bin/sh
+
+set -e
+
+home=`dirname "$0"`/..
+home=`cd "$home" && env - "PATH=$PATH" pwd`
+
+"$HOME"/src/lib/bin/install-all
+
+"$home"/bin/install asm false
+"$home"/bin/install asm hd
+"$home"/bin/install asm lefix
+"$home"/bin/install asm true
+"$home"/bin/install calc ratio
+"$home"/bin/install sed cdiff
+"$home"/bin/install sh c
+"$home"/bin/install sh cabal-install
+"$home"/bin/install sh cabal-repo
+"$home"/bin/install sh cabal-reset
+"$home"/bin/install sh cabal-world
+"$home"/bin/install sh dircp
+"$home"/bin/install sh fmt.mksh
+"$home"/bin/install sh n
+"$home"/bin/install sh nvim-diff
+"$home"/bin/install sh nvim-git-diff
+"$home"/bin/install sh p
+"$home"/bin/install sh shar
+"$home"/bin/install sh syscall

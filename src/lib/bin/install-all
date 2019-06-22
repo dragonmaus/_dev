@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e
+
+home=`dirname "$0"`/..
+home=`cd "$home" && env - "PATH=$PATH" pwd`
+
+"$home"/_start/bin/install
+"$home"/sys/bin/install
+"$home"/core/bin/install

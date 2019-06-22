@@ -1,0 +1,2 @@
+initialize posthook ~/.cargo/bin/darcs-initialize-post
+initialize run-posthook

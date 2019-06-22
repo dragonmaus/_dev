@@ -1,0 +1,1 @@
+sudo freebsd-update fetch

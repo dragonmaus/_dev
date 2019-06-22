@@ -1,0 +1,1 @@
+trap -- "[[ -r $shell_config/logout.sh ]] && \\\\builtin . $shell_config/logout.sh" EXIT

@@ -1,0 +1,18 @@
+PS1=${|
+  \\builtin typeset pwd='${|\\builtin typeset e=$? h=$(cd ~; pwd) p=$PWD/; p=${p/#$h\//\~/}; REPLY=${p%/}; return $e}'
+  \\builtin typeset c=$(print -n "\001"; colour -f cyan; print -n "\001")
+  \\builtin typeset g=$(print -n "\001"; colour -f green; print -n "\001")
+  \\builtin typeset m=$(print -n "\001"; colour -f magenta; print -n "\001")
+  \\builtin typeset y=$(print -n "\001"; colour -f yellow; print -n "\001")
+  \\builtin typeset r=$(print -n "\001"; colour -f reset; print -n "\001")
+
+  REPLY=$'\001\r'
+  [[ $TERM = linux ]] || REPLY+='$(title "$HOSTNAME ['$pwd$'] - '$shell'")'
+  REPLY+="($c\$USER$r@$m\$HOSTNAME$r)"
+  REPLY+=' '
+  REPLY+="$g\$(date +%T)$r"
+  REPLY+=' '
+  REPLY+="[$y$pwd$r]"
+  REPLY+=$'\n'
+  REPLY+='τ '
+}

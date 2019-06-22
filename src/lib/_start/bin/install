@@ -1,0 +1,22 @@
+#!/bin/sh
+
+set -e
+
+home=`dirname "$0"`/..
+home=`cd "$home" && env - "PATH=$PATH" pwd`
+cd "$home"
+
+for file in *.[cs]
+do
+	case ${file##*.} in
+	(c)
+		"$home"/bin/compile "$file"
+		;;
+	(s)
+		"$home"/bin/assemble "$file"
+		;;
+	esac
+done
+
+mkdir -p "$HOME"/lib
+cp -f *.o "$HOME"/lib

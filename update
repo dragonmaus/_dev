@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+
+d=$HOME/etc/update.d
+
+for f in `ls $d`
+do
+	f=$d/$f
+	test -f $f -a -r $f -a -x $f && . $f
+done
