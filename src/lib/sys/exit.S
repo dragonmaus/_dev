@@ -1,3 +1,4 @@
+; void exit(int rval);
 %include 'core.m'
 
 	section	.text

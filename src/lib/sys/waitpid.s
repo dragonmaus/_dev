@@ -1,3 +1,4 @@
+; int waitpid(int pid, int *status, int options);
 %include 'core.m'
 
 	section	.text

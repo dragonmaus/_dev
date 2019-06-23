@@ -1,3 +1,4 @@
+; int close(int fd);
 %include 'core.m'
 
 	section	.text

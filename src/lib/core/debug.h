@@ -1,7 +1,7 @@
 #ifndef DEBUG_H
 #define DEBUG_H
 
-extern int write(unsigned int, const char *, unsigned int);
+extern long int write(int, const char *, unsigned long int);
 
   static unsigned int
 debug_fmt_ulong(register char *s, register unsigned int u)

@@ -15,9 +15,15 @@ fi
 
 while read -r number name prototype
 do
-	echo "$prototype"
+	case $number in
+	(\;*)
+		continue
+		;;
+	esac
+	echo "extern $prototype"
 	test x"$number" = x- && continue
 	{
+		echo "; $prototype" | tr -s ' ' | sed 's/\* /*/g'
 		echo "%include 'core.m'"
 		echo
 		echo '	section	.text'

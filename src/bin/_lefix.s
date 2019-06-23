@@ -7,6 +7,7 @@
 	cextern	buffer_peek
 	cextern	buffer_putc
 	cextern	buffer_seek
+	cglobal	errno
 
 	section	.text
 proc _start
@@ -29,6 +30,9 @@ proc _start
 .fail:	cinvoke	buffer_flush, buffer_1
 	sinvoke	1, 1
 endproc
+
+	section	.data
+errno	dd	0
 
 	section	.bss
 c	resb	1

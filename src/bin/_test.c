@@ -51,7 +51,7 @@ str_len(const char *s)
 }
 
   int
-main(int argc, const char **argv, const char **envp)
+main(int argc, const char **argv, const char **envv)
 {
   char buf[4096], *p;
   int i, l;
@@ -67,11 +67,11 @@ main(int argc, const char **argv, const char **envp)
     l += str_copy(buf + l, argv[i]);
     l += str_copy(buf + l, "'\n");
   }
-  for (i = 0; envp[i]; ++i) {
-    l += str_copy(buf + l, "envp[");
+  for (i = 0; envv[i]; ++i) {
+    l += str_copy(buf + l, "envv[");
     l += fmt_int(buf + l, i);
     l += str_copy(buf + l, "] = '");
-    l += str_copy(buf + l, envp[i]);
+    l += str_copy(buf + l, envv[i]);
     l += str_copy(buf + l, "'\n");
   }
   l += str_copy(buf + l, "\n");

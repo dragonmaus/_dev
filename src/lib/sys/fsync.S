@@ -1,3 +1,4 @@
+; int fsync(int fd);
 %include 'core.m'
 
 	section	.text

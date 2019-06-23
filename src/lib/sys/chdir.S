@@ -1,3 +1,4 @@
+; int chdir(const char *path);
 %include 'core.m'
 
 	section	.text

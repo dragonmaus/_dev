@@ -1,3 +1,4 @@
+; int execve(const char *fname, char **argv, char **envv);
 %include 'core.m'
 
 	section	.text

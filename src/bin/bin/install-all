@@ -7,10 +7,19 @@ home=`cd "$home" && env - "PATH=$PATH" pwd`
 
 "$HOME"/src/lib/bin/install-all
 
+"$home"/bin/install asm epoch -lsys
 "$home"/bin/install asm false
 "$home"/bin/install asm hd
 "$home"/bin/install asm lefix
+#"$home"/bin/install asm printenv
 "$home"/bin/install asm true
+"$home"/bin/install c abspath -lcore -lsys
+#"$home"/bin/install c cargo-foreach
+"$home"/bin/install c en% -lcore -lsys
+"$home"/bin/install c fsync -lcore -lsys
+"$home"/bin/install c printenv -lcore -lsys
+"$home"/bin/install c realpath -lcore -lsys
+"$home"/bin/install c un% -lcore -lsys
 "$home"/bin/install calc ratio
 "$home"/bin/install sed cdiff
 "$home"/bin/install sh c
@@ -24,5 +33,6 @@ home=`cd "$home" && env - "PATH=$PATH" pwd`
 "$home"/bin/install sh nvim-diff
 "$home"/bin/install sh nvim-git-diff
 "$home"/bin/install sh p
+"$home"/bin/install sh pijul-new
 "$home"/bin/install sh shar
 "$home"/bin/install sh syscall

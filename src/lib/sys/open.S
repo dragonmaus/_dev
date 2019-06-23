@@ -1,3 +1,4 @@
+; int open(const char *path, int flags, int mode);
 %include 'core.m'
 
 	section	.text

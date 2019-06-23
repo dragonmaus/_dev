@@ -1,3 +1,4 @@
+; long int read(int fd, char *buf, unsigned long int nbyte);
 %include 'core.m'
 
 	section	.text

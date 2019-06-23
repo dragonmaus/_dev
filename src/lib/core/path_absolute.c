@@ -18,6 +18,7 @@ path_absolute(char *path, int bufsize)
   register char *f;
   register char *p;
   unsigned int size;
+  int i;
 
   if (!*path) {
     errno = error_inval;
@@ -27,7 +28,10 @@ path_absolute(char *path, int bufsize)
   /* get absolute, non-normalised version of path */
   f = full;
   if (*path != '/') {
-    if (!getcwd(f, bufsize)) return -1;
+    if ((i = getcwd(f, bufsize))) {
+      errno = i;
+      return -1;
+    }
     f += str_len(f);
     if (*(f - 1) != '/') *f++ = '/';
   }

@@ -1,5 +1,7 @@
 %include 'core.m'
 
+	cextern	time
+
 	section	.text
 	global	_start
 _start:
@@ -15,7 +17,7 @@ fmttime:
 	push	r15
 	push	rdx
 	push	rsi
-	sinvoke	201, 0			; syscall time
+	cinvoke	time, 0
 	mov	rdi, number
 	mov	rbx, numtab
 	mov	r15, 10
