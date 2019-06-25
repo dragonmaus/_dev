@@ -68,19 +68,24 @@ struct timezone {
 };
 
 extern void         exit(int rval);
+extern int          fork(void);
 extern long int     read(int fd, char *buf, unsigned long int nbyte);
 extern long int     write(int fd, const char *buf, unsigned long int nbyte);
 extern int          open(const char *path, int flags, int mode);
 extern int          close(int fd);
+extern int          wait3(int *status, int options, struct rusage *rusage);
 extern int          wait4(int pid, int *status, int options, struct rusage *rusage);
 extern int          waitpid(int pid, int *status, int options);
 extern int          chdir(const char *path);
 extern long int     readlink(const char *path, char *buf, unsigned long int count);
 extern int          execve(const char *fname, char **argv, char **envv);
+extern int          brk(const char *addr);
+extern int          sbrk(int incr);
+extern int          fcntl(int fd, int cmd, long int arg);
 extern int          fsync(int fd);
-extern int          stat(const char *path, struct stat *ub);
+extern int          stat(const char *path, struct stat *sb);
 extern int          fstat(int fd, struct stat *sb);
-extern int          lstat(const char *path, struct stat *ub);
+extern int          lstat(const char *path, struct stat *sb);
 extern int          clock_gettime(int clock_id, struct timespec *tp);
 extern long int     time(long int *t);
 extern int          getdents(int fd, char *buf, unsigned long int count);

@@ -22,7 +22,7 @@ do
 	then
 		echo "#ifdef $errno"
 		echo "  X($errno, \"$str\");"
-		echo "#endif"
+		echo '#endif'
 	else
 		echo "  X($name, \"$str\");"
 	fi

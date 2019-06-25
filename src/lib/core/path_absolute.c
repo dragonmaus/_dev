@@ -28,8 +28,8 @@ path_absolute(char *path, int bufsize)
   /* get absolute, non-normalised version of path */
   f = full;
   if (*path != '/') {
-    if ((i = getcwd(f, bufsize))) {
-      errno = i;
+    if ((i = getcwd(f, bufsize)) < 0) {
+      errno = -i;
       return -1;
     }
     f += str_len(f);

@@ -26,7 +26,7 @@ mkdirs() {
 }
 
 for f do
-	q=`echo "$f" | sed "s/'/'\\''/g"`
+	q=`echo "$f" | sed "s/'/'\\\\\\\\''/g"`
 	echo echo x - "'$q'"
 	mkdirs "$q"
 	echo "sed 's/^X//' >'$q' <<'END-of-$q'"

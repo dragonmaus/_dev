@@ -43,7 +43,7 @@ done
 shift `expr $OPTIND - 1`
 
 prefix=${PASSWORD_STORE_DIR:-$HOME/.password-store}
-key=`(cd "$prefix" && find . ! \( -name ".[!.]*" -prune \) -type f | sed -En 's:^\./(.+)\.gpg$:\1:p' | pathsort -u | dmenu "$@")`
+key=`(cd "$prefix" && find . ! \( -name ".[!.]*" -prune \) -type f) | sed -En 's:^\./(.+)\.gpg$:\1:p' | pathsort -u | dmenu "$@"`
 test x"$key" = x && exit 1
 
 selection=${PASSWORD_STORE_X_SELECTION:-clipboard}

@@ -10,13 +10,13 @@ test -f "$world" || exit 0
 cmd=$1
 shift
 
-case "$cmd" in
+case $cmd in
 (install|update)
 	cabal v2-update
 
 	while read -u 3 name
 	do
-		case "$name" in
+		case $name in
 		(--*)
 			continue
 			;;
@@ -28,6 +28,6 @@ case "$cmd" in
 			cabal v2-install "$name"
 			;;
 		esac
-	done 3<$world
+	done 3<"$world"
 	;;
 esac

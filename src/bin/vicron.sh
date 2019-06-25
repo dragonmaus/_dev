@@ -22,7 +22,7 @@ fsync "$crontab"{tmp}
 
 if cmp -s "$crontab"{tmp} "$crontab"
 then
-	print "vicron: $crontab.tmp unchanged"
+	printf '%s\n' "vicron: $crontab unchanged"
 	rm -f "$crontab"{tmp}
 else
 	mv -f "$crontab"{tmp} "$crontab"

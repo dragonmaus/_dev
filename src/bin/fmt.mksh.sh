@@ -1,5 +1,9 @@
 #!/bin/sh
 
+echo() {
+	printf '%s\n' "$*"
+}
+
 {
 	echo function z {
 	cat "$@"

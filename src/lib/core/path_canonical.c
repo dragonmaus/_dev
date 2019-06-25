@@ -22,8 +22,8 @@ path_canonical(char *path, int bufsize)
   /* make path absolute */
   size = 0;
   if (*path != '/') {
-    if ((i = getcwd(full, bufsize))) {
-      errno = i;
+    if ((i = getcwd(full, bufsize)) < 0) {
+      errno = -i;
       return -1;
     }
     size = str_len(full);

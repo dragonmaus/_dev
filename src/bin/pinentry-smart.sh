@@ -6,7 +6,7 @@ PINENTRY_TTY=/usr/bin/pinentry-tty
 die() {
 	e=$1
 	shift
-	echo "$@" 1>&2
+	printf '%s\n' "$*" 1>&2
 	exit $e
 }
 

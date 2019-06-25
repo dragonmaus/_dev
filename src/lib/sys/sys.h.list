@@ -1,11 +1,11 @@
 ; 0	nosys			int          nosys(void);
 1	exit			void         exit(int rval);
-; 2	fork			int          fork(void);
+2	fork			int          fork(void);
 3	read			long int     read(int fd, char *buf, unsigned long int nbyte);
 4	write			long int     write(int fd, const char *buf, unsigned long int nbyte);
 5	open			int          open(const char *path, int flags, int mode);
 6	close			int          close(int fd);
-; -	wait3			int          wait3(int *status, int options, struct rusage *rusage);
+-	wait3			int          wait3(int *status, int options, struct rusage *rusage);
 7	wait4			int          wait4(int pid, int *status, int options, struct rusage *rusage);
 -	waitpid			int          waitpid(int pid, int *status, int options);
 ; 9	link			int          link(char *path, char *link);
@@ -54,8 +54,8 @@
 ; 61	chroot			int          chroot(char *path);
 ; 65	msync			int          msync(char *addr, unsigned long int len, int flags);
 ; 66	vfork			int          vfork(void);
-; -	brk			int          brk(const char *addr);
-; 69	sbrk			int          sbrk(int incr);
+-	brk			int          brk(const char *addr);
+69	sbrk			int          sbrk(int incr);
 ; 70	sstk			int          sstk(int incr);
 ; 72	ovadvise		int          ovadvise(int anom);
 ; 73	munmap			int          munmap(char *addr, unsigned long int len);
@@ -71,7 +71,7 @@
 ; 86	getitimer		int          getitimer(unsigned int which, struct itimerval *itv);
 ; 89	getdtablesize		int          getdtablesize(void);
 ; 90	dup2			int          dup2(unsigned int from, unsigned int to);
-; 92	fcntl			int          fcntl(int fd, int cmd, long int arg);
+92	fcntl			int          fcntl(int fd, int cmd, long int arg);
 ; 93	select			int          select(int nd, struct fd_set *in, struct fd_set *ou, struct fd_set *ex, struct timeval *tv);
 95	fsync			int          fsync(int fd);
 ; 96	setpriority		int          setpriority(int which, int who, int prio);
@@ -112,9 +112,9 @@
 ; 181	setgid			int          setgid(unsigned int gid);
 ; 182	setegid			int          setegid(unsigned int egid);
 ; 183	seteuid			int          seteuid(unsigned int euid);
-188	stat			int          stat(const char *path, struct stat *ub);
+188	stat			int          stat(const char *path, struct stat *sb);
 189	fstat			int          fstat(int fd, struct stat *sb);
-190	lstat			int          lstat(const char *path, struct stat *ub);
+190	lstat			int          lstat(const char *path, struct stat *sb);
 ; 191	pathconf		int          pathconf(char *path, int name);
 ; 192	fpathconf		int          fpathconf(int fd, int name);
 ; 194	getrlimit		int          getrlimit(unsigned int which, struct rlimit *rlp);
