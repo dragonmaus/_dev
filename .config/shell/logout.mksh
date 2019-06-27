@@ -11,8 +11,8 @@ then
 	histfilesize=${HISTFILESIZE:-$((${HISTSIZE:-2047} / 2))}
 	\\builtin print -s dummy # flush the last command to the history file
 	\\builtin fc -ln 1 \
-	| \sed 's/^\t//' \
-	| \grep -Eav -e '^[[:blank:]]' -e '^[[:blank:]]*$' \
+	| \sed 's/^	//' \
+	| \grep -Eav -e '^[[:blank:]]' -e '^[[:blank:]]*$' -e '^dummy$' \
 	| \grep -Ea '^[[:blank:][:print:]]+$' \
 	| \sed -E 's/^[[:blank:][:space:]]+//;s/[[:blank:][:space:]]+$//' \
 	| \tail -r \
