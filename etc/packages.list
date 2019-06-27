@@ -5,6 +5,7 @@ gforth
 ghc
 git
 libsodium
+llvm
 mksh
 nasm
 neovim
