@@ -10,4 +10,5 @@ nasm
 neovim
 nettle
 pkg
+pkgconf
 sudo
