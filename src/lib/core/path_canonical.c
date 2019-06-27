@@ -1,82 +1,70 @@
-#include <limits.h>
 #include <sys.h>
 #include "error.h"
-#include "fmt.h"
-#include "open.h"
 #include "path.h"
 #include "str.h"
+
+  static unsigned int
+next(char *elem, char *path)
+{
+  path[str_find(path, '/')] = 0;
+  return str_copy(elem, path) + 1;
+}
 
   int
 path_canonical(char *path, int bufsize)
 {
   char full[bufsize];
-  char real[bufsize];
-  int fd, i, size;
-  struct stat st1, st2;
+  char elem[bufsize];
+  register char *f;
+  register char *p;
+  unsigned int size;
+  int i;
+  struct stat sb;
 
   if (!*path) {
     errno = error_inval;
     return -1;
   }
 
-  /* make path absolute */
-  size = 0;
+  /* get absolute, non-normalised version of path */
+  f = full;
   if (*path != '/') {
-    if ((i = getcwd(full, bufsize)) < 0) {
+    if ((i = getcwd(f, bufsize)) < 0) {
       errno = -i;
       return -1;
     }
-    size = str_len(full);
-    if (full[size - 1] != '/') full[size++] = '/';
+    f += str_len(f);
+    if (*(f - 1) != '/') *f++ = '/';
   }
-  size += str_copy(full + size, path);
+  f += str_copy(f, path);
+  *f = 0;
 
-  fd = open_read(full);
-  if (fd < 0) {
-    if (errno != error_noent) return -1;
-    if (size == 1) return -1; // somehow `/` does not exist
-
-    i = str_findr(full, '/');
-
-    char tail[size - i];
-    str_copy(tail, full + i + 1);
-
-    if (i > 1) full[i] = 0;
-    else full[i + 1] = 0;
-
-    size = path_canonical(full, bufsize);
-    if (size == -1) return -1;
-
-    full[size++] = '/';
-    str_copy(full + size, tail);
-    path_absolute(full, bufsize);
-
-    return str_copy(path, full);
-  }
-
-  i = str_copy(full, "/proc/self/fd/");
-  i += fmt_uint(full + i, fd);
-  full[i] = 0;
-
-  i = readlink(full, real, bufsize);
-  if (i == -1) {
-    close(fd);
-    return -1;
-  }
-  real[i] = 0;
-
-  i = stat(real, &st2);
-  if (i == -1) {
-    close(fd);
-    return -1;
-  }
-  i = fstat(fd, &st1);
-  if (i == -1 || st1.st_dev != st2.st_dev || st1.st_ino != st2.st_ino) {
-    close(fd);
-    return -1;
+  size = f - full;
+  f = full;
+  p = path;
+  *p = 0;
+  while ((f - full) < size && *f) {
+    f += next(elem, f);
+    if (!*elem || str_equal(".", elem)) continue;
+    if (str_equal("..", elem)) {
+      p = path + str_findr(path, '/');
+      *p = 0;
+      continue;
+    }
+    p += str_copy(p, "/");
+    p += str_copy(p, elem);
+    if (lstat(path, &sb) == -1) return -1;
+    if (S_ISLNK(sb.st_mode)) {
+      if (readlink(path, elem, bufsize) == -1) return -1;
+      p = path + str_findr(path, '/');
+      *p = 0;
+      p += str_copy(p, "/");
+      p += str_copy(p, elem);
+      p = path + path_canonical(path, bufsize);
+    }
   }
 
-  close(fd);
+  if (p == path) p += str_copy(p, "/");
 
-  return str_copy(path, real);
+  return p - path;
 }

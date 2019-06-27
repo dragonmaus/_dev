@@ -54,7 +54,7 @@ path_absolute(char *path, int bufsize)
     p += str_copy(p, elem);
   }
 
-  if (p == path) str_copy(p, "/");
+  if (p == path) p += str_copy(p, "/");
 
   return p - path;
 }
