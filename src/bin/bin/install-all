@@ -16,7 +16,6 @@ home=`cd "$home" && env - "PATH=$PATH" pwd`
 "$home"/bin/install c abspath -lcore -lsys
 #"$home"/bin/install c cargo-foreach
 "$home"/bin/install c en% -lcore -lsys
-"$home"/bin/install c fsync -lcore -lsys
 "$home"/bin/install c printenv -lcore -lsys
 "$home"/bin/install c realpath -lcore -lsys
 "$home"/bin/install c un% -lcore -lsys
